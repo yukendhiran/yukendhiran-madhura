@@ -1,0 +1,45 @@
+//temp
+
+.marquee .marquee-left-to-right {
+  height: 400px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.track-1 {
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 10s linear infinite;
+  width: 180%;
+}
+.track-1:hover {
+  animation-play-state: paused;
+}
+.track-2:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-10%);
+  }
+}
+
+@keyframes marquee-left-to-right {
+  from {
+    transform: translateX(-10%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Define a new class for the left-to-right scrolling effect */
+.track-2 {
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee-left-to-right 10s linear infinite;
+  width: 180%;
+}
