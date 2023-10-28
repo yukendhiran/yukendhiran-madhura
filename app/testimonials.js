@@ -1,30 +1,20 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import CardTestimonials from "./cardTestimonial";
 import { client } from "../sanity/lib/client";
 
 async function fetchTestimonials() {
   try {
     const queryTestimonials = `*[_type == "testimonials"]`;
-    const testimonial = await client.fetch(queryTestimonials);
+    const testimonial = await client.fetch(queryTestimonials, {
+      cache: "no-store",
+    });
     return testimonial;
   } catch (error) {
     console.error("Error fetching featured cars:", error);
     return [];
   }
 }
-export default function Testimonials() {
-  const [testimonials, setTestimonials] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedTestimonials = await fetchTestimonials();
-      setTestimonials(fetchedTestimonials);
-    };
-
-    fetchData();
-  }, []);
+export default async function Testimonials() {
+  const testimonials = await fetchTestimonials();
 
   return (
     <div className="bg-base-100 text-base-content p-7">
